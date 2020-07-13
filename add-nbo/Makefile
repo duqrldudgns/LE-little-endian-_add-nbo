@@ -7,4 +7,4 @@ main.o : main.cpp
 	g++ -c -o main.o main.cpp
 
 clean : 
-	rm -f add-nbo *.0
+	rm -f add-nbo *.o
