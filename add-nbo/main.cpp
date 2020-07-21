@@ -20,7 +20,10 @@ uint32_t my_ntohl(char *file){
     }
 
     uint32_t n;
-    fread(&n, sizeof(uint32_t), 1, pFile);
+    if( !fread(&n, 1, sizeof(uint32_t), pFile) ){  // 기존 코드 fread(&n, sizeof(uint32_t), 1, pFile); 7byte일 경우 리턴값 1, 0
+        printf("read failed : %s \n", file);       // 현재 코드 fread(&n, 1, sizeof(uint32_t), pFile); 7byte일 경우 리턴값 4, 3
+        return -1;
+    }
     fclose(pFile);
     return ntohl(n);
 }
